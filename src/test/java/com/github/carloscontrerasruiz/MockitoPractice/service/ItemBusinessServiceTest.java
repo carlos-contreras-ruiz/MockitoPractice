@@ -3,19 +3,18 @@ package com.github.carloscontrerasruiz.MockitoPractice.service;
 import com.github.carloscontrerasruiz.MockitoPractice.dto.Item;
 import com.github.carloscontrerasruiz.MockitoPractice.entity.ItemEntity;
 import com.github.carloscontrerasruiz.MockitoPractice.repository.ItemRepository;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class) //JUNIT4
 public class ItemBusinessServiceTest {
 
     @InjectMocks
@@ -24,10 +23,15 @@ public class ItemBusinessServiceTest {
     @Mock
     private ItemRepository repository;
 
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this); //without this you will get NPE
+    }
+
     @Test
     public void retrieveHardcodeItemTest() {
         Item item = service.retrieveHardcodeItem();
-        assertEquals(1,item.getId());
+        assertEquals(1, item.getId());
     }
 
     @Test

@@ -2,12 +2,12 @@ package com.github.carloscontrerasruiz.MockitoPractice.bussiness;
 
 
 import com.github.carloscontrerasruiz.MockitoPractice.service.SomeDataService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 //@RunWith(SpringRunner.class)
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class SomeBusinessImplTest {
 
     @Mock
@@ -27,6 +27,10 @@ public class SomeBusinessImplTest {
 
     List<String> mock = mock(List.class);
 
+    @BeforeEach
+    public void setup(){
+        MockitoAnnotations.openMocks(this); //without this you will get NPE
+    }
 
     @Test
     public void calculateSumTest() {

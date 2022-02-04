@@ -1,7 +1,10 @@
 package com.github.carloscontrerasruiz.MockitoPractice;
 
-import org.junit.Before;
-import org.junit.Test;
+
+
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.List;
 
@@ -14,7 +17,7 @@ public class ListMockTest {
 
     List mock;
 
-    @Before
+    @BeforeEach
     public void setup() {
         mock = mock(List.class);
     }
