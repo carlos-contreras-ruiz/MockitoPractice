@@ -3,24 +3,23 @@ package com.github.carloscontrerasruiz.MockitoPractice;
 import com.github.carloscontrerasruiz.MockitoPractice.entity.ItemEntity;
 import com.github.carloscontrerasruiz.MockitoPractice.repository.ItemRepository;
 import org.json.JSONException;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = {"classpath:test-configuration.properties"})
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UnitTestingApplicationTests {
     @Autowired
     private TestRestTemplate restTemplate;
@@ -30,7 +29,7 @@ public class UnitTestingApplicationTests {
     @MockBean
     private ItemRepository repository;
 
-    @Before
+    @BeforeAll
     public void setup() {
         when(repository.findAll()).thenReturn(
                 Arrays.asList(
