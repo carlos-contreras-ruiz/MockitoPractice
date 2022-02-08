@@ -3,7 +3,7 @@ package com.github.carloscontrerasruiz.MockitoPractice;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class JsonPathTest {
         System.out.println(context.read("$..id").toString());
         List<Integer> ids = context.read("$..id");
 
-        Assertions.assertThat(ids).containsExactly(1000,1001,1002);
+        Assertions.assertThat(ids).containsExactly(1000, 1001, 1002);
 
         System.out.println(context.read("$.[1]").toString());
         System.out.println(context.read("$.[0:2]").toString());
