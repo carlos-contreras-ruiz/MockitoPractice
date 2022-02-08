@@ -4,6 +4,8 @@ import com.github.carloscontrerasruiz.MockitoPractice.service.SomeDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 public class SomeBusinessImpl {
 
@@ -19,6 +21,17 @@ public class SomeBusinessImpl {
             sum += data[i];
         }
         return sum;
+    }
+
+    public int calculateSumWithStream(int[] data){
+        if (data == null){
+            return 0;
+        }
+        return Arrays.stream(data)
+                .reduce(0,Integer::sum);
+
+//        return Arrays.stream(data)
+//                .reduce(0, (acc, ele) -> acc + ele);
     }
 
     public int calculateSumUsingService(){
